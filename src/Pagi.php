@@ -49,9 +49,9 @@ class Pagi
      *
      * @return void
      */
-    protected function prepare()
+    protected function prepare(\WP_Query $query = null)
     {
-        $this->query = collect(
+        $this->query = $query?->query_vars ? collect($query->query_vars)->filter() : collect(
             Arr::get($GLOBALS, 'wp_query')->query_vars ?? []
         )->filter();
 
@@ -59,7 +59,9 @@ class Pagi
             return;
         }
 
-        $this->query->put('post_type', get_post_type());
+        if (! $this->query->has('post_type') || empty($this->query->get('post_type'))) {
+            $this->query->put('post_type', get_post_type());
+        }
 
         if (is_tax()) {
             $this->query->put('tax_query', [[
@@ -89,9 +91,9 @@ class Pagi
      *
      * @return \Illuminate\Pagination\LengthAwarePaginator
      */
-    public function build()
+    public function build(\WP_Query $query = null)
     {
-        $this->prepare();
+        $this->prepare($query);
 
         return new LengthAwarePaginator(
             $this->items,
