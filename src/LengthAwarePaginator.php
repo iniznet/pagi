@@ -54,10 +54,7 @@ class LengthAwarePaginator extends Paginator
      */
     public function nextPageUrl()
     {
-        return next_posts(
-            count($this->items),
-            false
-        );
+        return parent::nextPageUrl();
     }
 
     /**
@@ -67,7 +64,7 @@ class LengthAwarePaginator extends Paginator
      */
     public function previousPageUrl()
     {
-        return previous_posts(false);
+        return parent::previousPageUrl();
     }
 
     /**
