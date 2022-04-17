@@ -67,7 +67,7 @@ class Pagi
             $this->query->put('tax_query', [[
                 'taxonomy' => $this->query->get('taxonomy'),
                 'terms' => $this->query->get('term'),
-                'field' => 'name',
+                'field' => 'slug',
             ]]);
         }
 
