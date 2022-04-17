@@ -1,8 +1,8 @@
 {
-  "name": "log1x/pagi",
+  "name": "iniznet/pagi",
   "type": "package",
   "license": "MIT",
-  "description": "A better WordPress pagination.",
+  "description": "A better WordPress pagination & allow custom query.",
   "authors": [
     {
       "name": "Brandon Nifong",
